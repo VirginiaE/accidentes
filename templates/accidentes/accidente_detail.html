@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TelSegSa</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+        #map-container{
+            height: 93%;
+        }
+        html, body{
+            height: 100%;
+            margin: 0;
+        padding: 0;
+
+        }
+    </style>
+</head>
+<body>
+<nav class="red darken-4" style="z-index: 999999">
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo center ">TelSegSa - Accidente {{ accidente.id }}</a>
+    </div>
+</nav>
+
+        <div class="card col s4" style="position: absolute; z-index: 99999; left: 10px; top: 120px">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sexo</th>
+                        <th>Edad</th>
+                        <th>Sangre</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for persona in personas %}
+                        <tr>
+                            <td>{{ persona.sexo }}</td>
+                            <td>{{ persona.edad }}</td>
+                            <td>{{ persona.sangre }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+<div id="map-container">
+    <div id="map"></div>
+</div>
+<script>
+    var map;
+    function initMap() {
+        var latitud = {{ accidente.latitud }};
+        var longitud = {{ accidente.longitud }};
+
+        var myLatLng = {lat: latitud, lng: longitud};
+        map = new google.maps.Map(document.getElementById('map'), {
+                center: myLatLng,
+                zoom: 10
+            });
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          title: 'Hello World!'
+        });
+
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAidVpCcQBWKWH_Fb8k8Tp2po_xkNrBl_Y&callback=initMap"
+defer></script>
+
+</body>
+</html>
