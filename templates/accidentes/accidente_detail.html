@@ -28,7 +28,7 @@
 <body>
 <nav class="red darken-4" style="z-index: 999999">
     <div class="nav-wrapper">
-        <a href="#" class="brand-logo center ">TelSegSa - Accidente {{ accidente.id }}</a>
+        <a href="#" class="brand-logo center ">TelSegSa - Siniestro {{ accidente.id }}</a>
     </div>
 </nav>
 
@@ -65,7 +65,7 @@
         var myLatLng = {lat: latitud, lng: longitud};
         map = new google.maps.Map(document.getElementById('map'), {
                 center: myLatLng,
-                zoom: 10
+                zoom: 15
             });
         var marker = new google.maps.Marker({
           position: myLatLng,
